@@ -1,9 +1,7 @@
-local function try_require(module, msg)
-    local success, result = pcall(require, module)
-    if success then return result else return error(msg) end
-end
 
-local ffi = try_require("ffi", "Failed to require FFI, please make sure Allow unsafe scripts is enabled!")
+local http = require 'gamesense/http'
+local ffi = require("ffi") or error("Failed to require FFI, please make sure Allow unsafe scripts is enabled!", 2)
+
 ffi.cdef[[
     typedef long(__thiscall* GetRegistryString)(void* this, const char* pFileName, const char* pPathID);
     typedef bool(__thiscall* Wrapper)(void* this, const char* pFileName, const char* pPathID);
