@@ -1,4 +1,3 @@
-
 local http = require 'gamesense/http'
 local ffi = require("ffi") or error("Failed to require FFI, please make sure Allow unsafe scripts is enabled!", 2)
 
@@ -13,7 +12,7 @@ local system10 = ffi.cast(type2, interface) or error("Error", 2)
 local systemxwrapper = ffi.cast("Wrapper", system10[0][10]) or error("Error", 2)
 local gethwid = ffi.cast("GetRegistryString", system10[0][13]) or error("Error", 2)
 
--- Function to obtain HWID
+-- Funkcja do uzyskiwania HWID
 local function getHWID()
     for i = 65, 90 do
         local driveLetter = string.char(i)
@@ -28,6 +27,7 @@ local function getHWID()
 end
 
 local hwid = getHWID()
+
 
 http.get('http://localhost/gengarlogin/secondcheck.php?hwid=' .. hwid, function(success, response)
     if response.body == "trueprawdziwygosc" then
