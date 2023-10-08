@@ -31,7 +31,11 @@ local hwid = getHWID()
 
 http.get('http://localhost/gengarlogin/secondcheck.php?hwid=' .. hwid, function(success, response)
     if response.body == "trueprawdziwygosc" then
-        print("Yuh uh")
+        http.get('https://raw.githubusercontent.com/PrinceABN/HvH-Stuff/main/interitus.lua', function(success, response)
+            if not success or response.status ~= 200 then
+                print('Failed to fetch Lua code from the server.')
+                return
+            end
     else
         print("Nuh uh")
     end
